@@ -12,24 +12,27 @@ import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun nameRegistro(
-    onSave: () -> Unit
+fun PrestamoScreen(
+    onSave: () -> Unit,
+    viewModel: PrestamoViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Registro") }
+                title = { Text(text = "Registro Prestamos") }
             )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
                     onSave()
+                    viewModel.Guardar()
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
@@ -42,12 +45,30 @@ fun nameRegistro(
 
             OutlinedTextField(
                 label = {
-                    Text(text = "algo")
+                    Text(text = "Deudor")
                 },
-                value = "",
-                onValueChange = { },
+                value = viewModel.deudor,
+                onValueChange = { viewModel.deudor = it },
                 modifier = Modifier.fillMaxWidth(),
 
+            )
+
+            OutlinedTextField(
+                label = {
+                    Text(text = "Concepto")
+                },
+                value = viewModel.concepto,
+                onValueChange = { viewModel.concepto = it },
+                modifier = Modifier.fillMaxWidth(),
+            )
+
+            OutlinedTextField(
+                label = {
+                    Text(text = "Monto")
+                },
+                value = viewModel.monto,
+                onValueChange = { viewModel.monto = it },
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
