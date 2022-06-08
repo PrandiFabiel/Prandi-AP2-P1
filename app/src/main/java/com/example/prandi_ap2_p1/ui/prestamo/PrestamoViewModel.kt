@@ -21,7 +21,7 @@ class PrestamoViewModel @Inject constructor(
     var concepto by mutableStateOf("")
     var monto by mutableStateOf("")
 
-    var prestamosDb = prestamoRepository.GetLista()
+    var prestamos = prestamoRepository.GetLista()
     private set
 
     fun Guardar(){
