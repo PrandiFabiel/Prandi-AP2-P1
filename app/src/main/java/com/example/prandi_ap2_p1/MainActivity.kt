@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.prandi_ap2_p1.ui.prestamo.nameConsulta
-import com.example.prandi_ap2_p1.ui.prestamo.nameRegistro
+import com.example.prandi_ap2_p1.ui.prestamo.PrestamoListScreen
+import com.example.prandi_ap2_p1.ui.prestamo.PrestamoScreen
 import com.example.prandi_ap2_p1.ui.theme.PrandiAP2P1Theme
 import com.example.prandi_ap2_p1.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,12 +39,12 @@ fun ParcialApp(
 
             NavHost(navController = navHostController, startDestination = Screen.nameConsulta.route){
                 composable(route = Screen.nameConsulta.route ){
-                    nameConsulta(
+                    PrestamoListScreen(
                         onNavigateToRegistro =  {navHostController.navigate(Screen.nameRegistro.route)}
                     )
                 }
                 composable(route = Screen.nameRegistro.route ){
-                    nameRegistro(onSave = {navHostController.navigateUp()})
+                    PrestamoScreen(onSave = {navHostController.navigateUp()})
                 }
 
             }
