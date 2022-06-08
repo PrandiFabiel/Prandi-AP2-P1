@@ -1,4 +1,4 @@
-package com.example.prandi_ap2_p1.ui.registroConsultaP1
+package com.example.prandi_ap2_p1.ui.prestamo
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column

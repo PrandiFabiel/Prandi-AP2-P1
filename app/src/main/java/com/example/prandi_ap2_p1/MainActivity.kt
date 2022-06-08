@@ -6,15 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.prandi_ap2_p1.ui.registroConsultaP1.nameConsulta
-import com.example.prandi_ap2_p1.ui.registroConsultaP1.nameRegistro
+import com.example.prandi_ap2_p1.ui.prestamo.nameConsulta
+import com.example.prandi_ap2_p1.ui.prestamo.nameRegistro
 import com.example.prandi_ap2_p1.ui.theme.PrandiAP2P1Theme
 import com.example.prandi_ap2_p1.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
