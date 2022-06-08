@@ -1,21 +1,23 @@
 package com.example.prandi_ap2_p1.ui.prestamo
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.prandi_ap2_p1.model.Prestamo
 
 @Composable
-fun nameConsulta(
+fun PrestamoListScreen(
     onNavigateToRegistro: () -> Unit,
+    viewModel: PrestamoViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
 
@@ -38,22 +40,10 @@ fun nameConsulta(
         scaffoldState = scaffoldState
     ) {
         Column(modifier = Modifier.padding(it)) {
-            Row(modifier = Modifier){
-                Text(
-                    text = "ID",
-                    modifier = Modifier.padding(start = 20.dp),
-                    style = MaterialTheme.typography.h5
-                )
-                Text(
-                    text = "Descripcion",
-                    modifier = Modifier.padding(start = 140.dp),
-                    style = MaterialTheme.typography.h5
-                )
-            }
-
+            val listaPrestamos = viewModel.prestamos.collectAsState(initial = emptyList())
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                items(5) {
-                    OcupacionRow(nombre = "Prandi", ID = "1")
+                items(listaPrestamos.value) { prestamo ->
+                    PrestamoRow(prestamo)
                 }
             }
         }
@@ -63,7 +53,7 @@ fun nameConsulta(
 
 
 @Composable
-fun OcupacionRow(nombre: String, ID: String) {
+fun PrestamoRow(prestamo: Prestamo) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -73,17 +63,20 @@ fun OcupacionRow(nombre: String, ID: String) {
     )
 
     {
-        Row(modifier = Modifier.padding(top = 10.dp)) {
+        Row(horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(25.dp)) {
             Text(
-                text = ID,
-                maxLines = 1,
-                modifier = Modifier.padding(start = 20.dp)
+                text = prestamo.deudor,
             )
             Text(
-                text = nombre,
-                modifier = Modifier.padding(start = 185.dp)
+                text = "$"+prestamo.monto.toString(),
             )
         }
+        Text(
+            text = prestamo.concepto,
+        )
 
     }
 
