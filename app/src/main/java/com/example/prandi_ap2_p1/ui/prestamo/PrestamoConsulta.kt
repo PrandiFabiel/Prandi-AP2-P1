@@ -69,15 +69,17 @@ fun PrestamoRow(prestamo: Prestamo) {
                 .height(25.dp)) {
             Text(
                 text = prestamo.deudor,
+                style = MaterialTheme.typography.h6,
             )
             Text(
                 text = "$"+prestamo.monto.toString(),
+                style = MaterialTheme.typography.h6,
             )
         }
         Text(
             text = prestamo.concepto,
         )
-
+        Spacer(modifier = Modifier.padding(10.dp))
     }
 
 }
